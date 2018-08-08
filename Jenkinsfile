@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('error') {
       steps {
-        withNPM()
+        withNPM(npmrcConfig: 'npmrc')
       }
     }
   }

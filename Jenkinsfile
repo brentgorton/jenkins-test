@@ -1,15 +1,12 @@
 pipeline {
-  agent {
-    node {
-      label 'test'
-    }
-
-  }
+  agent any
   stages {
     stage('test') {
       steps {
-        sh '''npm install
-grunt echo'''
+        node(label: 'test') {
+          sh 'npm install'
+        }
+
       }
     }
   }

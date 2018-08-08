@@ -1,10 +1,11 @@
 pipeline {
   agent any
   stages {
-    stage('test') {
+    stage('') {
       steps {
-        node(label: 'test') {
-          sh 'npm install'
+        withNPM() {
+          sh '''npm install grunt grunt-cli
+grunt echo'''
         }
 
       }

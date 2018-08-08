@@ -1,5 +1,10 @@
 pipeline {
-  agent none
+  agent {
+    docker {
+      image '9-alpine'
+    }
+
+  }
   stages {
     stage('test') {
       steps {

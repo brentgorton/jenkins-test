@@ -33,6 +33,7 @@ exit 0'''
       steps {
         script {
           echo "${somevalue}"
+          echo "${params.somevalue}"
           if("${somevalue}" == "true") {
             echo 'Hello, bitwiseman!'
             sh 'echo \'hit the speak message\''

@@ -5,18 +5,21 @@ pipeline {
       parallel {
         stage('Environment Setup') {
           steps {
-            sh '''npm install grunt grunt-cli
+            sh '''npm config set //registry.npmjs.org/:_authToken $npmtoken
+npm install grunt grunt-cli
 exit 0'''
           }
         }
         stage('root npm install') {
           steps {
-            sh 'npm install'
+            sh '''npm config set //registry.npmjs.org/:_authToken $npmtoken
+npm install'''
           }
         }
         stage('angular npm install') {
           steps {
-            sh 'cd angular && npm install'
+            sh '''npm config set //registry.npmjs.org/:_authToken $npmtoken
+cd angular && npm install'''
           }
         }
       }
@@ -73,5 +76,6 @@ exit 0'''
 environment {
   PATH = "/usr/local/bin:$PATH"
   doPackage = 'false'
+  npmtoken = '38282b02-2ad5-4869-80bb-c9771fcc7cf1'
 }
 }

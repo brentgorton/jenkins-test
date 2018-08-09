@@ -14,7 +14,7 @@ exit 0'''
             sh 'grunt echo'
           }
         }
-        stage('') {
+        stage('Test') {
           steps {
             sh 'echo \'Test\''
           }

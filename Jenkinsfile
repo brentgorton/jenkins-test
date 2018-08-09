@@ -24,27 +24,30 @@ exit 0'''
     stage('Should you') {
       steps {
         script {
-          doPackage = input(message: 'Should you package', id: 'doPackage')
-          echo "${doPackage}"
-        }
+          doPackage = input(id: 'userInput', message: 'Merge to?',
+          parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'strDef',
+          description:'describing choices', name:'nameChoice', choices: "QA\nUAT\nProduction\nDevelop\nMaster"]
+        ])
+        echo "${doPackage}"
+      }
 
-      }
-    }
-    stage('Speak') {
-      when {
-        expression {
-          doPackage == 'Proceed'
-        }
-
-      }
-      steps {
-        echo 'Hello, bitwiseman!'
-        sh 'echo \'hit the speak message\''
-      }
     }
   }
-  environment {
-    PATH = "/usr/local/bin:$PATH"
-    doPackage = 'false'
+  stage('Speak') {
+    when {
+      expression {
+        doPackage == 'Proceed'
+      }
+
+    }
+    steps {
+      echo 'Hello, bitwiseman!'
+      sh 'echo \'hit the speak message\''
+    }
   }
+}
+environment {
+  PATH = "/usr/local/bin:$PATH"
+  doPackage = 'false'
+}
 }

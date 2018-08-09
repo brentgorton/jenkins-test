@@ -21,6 +21,22 @@ exit 0'''
         }
       }
     }
+    stage('Should you') {
+      steps {
+        input(message: 'Should you package', id: 'somevalue', ok: 'true')
+      }
+    }
+    stage('Speak') {
+      when {
+        expression {
+          params.somevalue == 'true'
+        }
+
+      }
+      steps {
+        echo 'Hello, bitwiseman!'
+      }
+    }
   }
   environment {
     PATH = "/usr/local/bin:$PATH"

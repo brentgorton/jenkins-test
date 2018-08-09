@@ -24,7 +24,7 @@ exit 0'''
     stage('Should you') {
       steps {
         script {
-          def somevalue = input(message: 'Should you package', id: 'somevalue', ok: 'true')
+          doPackage = input(message: 'Should you package', id: 'doPackage')
         }
 
       }
@@ -32,9 +32,8 @@ exit 0'''
     stage('Speak') {
       steps {
         script {
-          echo "${somevalue}"
-          echo "${params.somevalue}"
-          if("${somevalue}" == "true") {
+          echo "${doPackage}"
+          if("${doPackage}" == "Ok") {
             echo 'Hello, bitwiseman!'
             sh 'echo \'hit the speak message\''
           }

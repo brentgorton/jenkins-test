@@ -26,14 +26,14 @@ exit 0'''
         script {
           doPackage = input(id: 'userInput', message: 'Merge to?',
           parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'strDef',
-          description:'describing choices', name:'nameChoice', choices: "QA\nUAT\nProduction\nDevelop\nMaster"]
+          description:'describing choices', name:'nameChoice', choices: "Cutting Edge\nMaster"]
         ])
         echo "${doPackage}"
       }
 
     }
   }
-  stage('Speak') {
+  stage('Deploy to Master') {
     when {
       expression {
         doPackage == 'Master'
@@ -41,8 +41,18 @@ exit 0'''
 
     }
     steps {
-      echo 'Hello, bitwiseman!'
-      sh 'echo \'hit the speak message\''
+      echo 'Deploying to Master'
+    }
+  }
+  stage('Deploy to Cutting Edge') {
+    when {
+      expression {
+        doPackage == 'Cutting Edge'
+      }
+
+    }
+    steps {
+      echo 'Deploying to Cutting Edge'
     }
   }
 }

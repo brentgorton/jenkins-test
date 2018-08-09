@@ -44,5 +44,6 @@ exit 0'''
   }
   environment {
     PATH = "/usr/local/bin:$PATH"
+    doPackage = 'false'
   }
 }

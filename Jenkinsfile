@@ -23,19 +23,22 @@ exit 0'''
     }
     stage('Should you') {
       steps {
-        input(message: 'Should you package', id: 'somevalue', ok: 'true')
-      }
-    }
-    stage('Speak') {
-      when {
-        expression {
-          '${somevalue}' == 'true'
+        script {
+          somevalue = input(message: 'Should you package', id: 'somevalue', ok: 'true')
         }
 
       }
+    }
+    stage('Speak') {
       steps {
-        echo 'Hello, bitwiseman!'
-        sh 'echo \'hit the speak message\''
+        script {
+          echo "${somevalue}"
+          if("${somevalue}" == "true") {
+            echo 'Hello, bitwiseman!'
+            sh 'echo \'hit the speak message\''
+          }
+        }
+
       }
     }
   }

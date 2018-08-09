@@ -21,22 +21,6 @@ exit 0'''
         }
       }
     }
-    stage('Should you package') {
-      steps {
-        input(ok: 'true', id: 'somevalue', message: 'Want to package')
-      }
-    }
-    stage('package') {
-      when {
-        expression {
-          params.somevalue == 'true'
-        }
-
-      }
-      steps {
-        echo 'Hello, bitwiseman!'
-      }
-    }
   }
   environment {
     PATH = "/usr/local/bin:$PATH"

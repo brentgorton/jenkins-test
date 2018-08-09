@@ -8,8 +8,17 @@ exit 0'''
       }
     }
     stage('Execute') {
-      steps {
-        sh 'grunt echo'
+      parallel {
+        stage('Execute') {
+          steps {
+            sh 'grunt echo'
+          }
+        }
+        stage('') {
+          steps {
+            sh 'echo \'Test\''
+          }
+        }
       }
     }
   }

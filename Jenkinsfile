@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent none
   stages {
     stage('Environment Setup') {
       steps {
@@ -12,15 +12,29 @@ exit 0'''
         stage('Execute') {
           steps {
             sh 'grunt echo'
-            sleep 60
           }
         }
         stage('Test') {
           steps {
             sh 'echo \'Test\''
-            sleep 60
           }
         }
+      }
+    }
+    stage('Should you package') {
+      steps {
+        input(ok: 'true', id: 'somevalue', message: 'Want to package')
+      }
+    }
+    stage('package') {
+      when {
+        expression {
+          params.somevalue == 'true'
+        }
+
+      }
+      steps {
+        echo 'Hello, bitwiseman!'
       }
     }
   }

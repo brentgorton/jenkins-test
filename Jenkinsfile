@@ -2,9 +2,23 @@ pipeline {
   agent any
   stages {
     stage('Environment Setup') {
-      steps {
-        sh '''npm install grunt grunt-cli
+      parallel {
+        stage('Environment Setup') {
+          steps {
+            sh '''npm install grunt grunt-cli
 exit 0'''
+          }
+        }
+        stage('root npm install') {
+          steps {
+            sh 'npm install'
+          }
+        }
+        stage('angular npm install') {
+          steps {
+            sh 'cd angular && npm install'
+          }
+        }
       }
     }
     stage('Execute') {

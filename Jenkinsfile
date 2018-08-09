@@ -35,6 +35,7 @@ exit 0'''
       }
       steps {
         echo 'Hello, bitwiseman!'
+        sh 'echo \'hit the speak message\''
       }
     }
   }

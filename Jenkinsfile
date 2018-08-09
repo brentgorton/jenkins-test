@@ -36,7 +36,7 @@ exit 0'''
   stage('Speak') {
     when {
       expression {
-        doPackage == 'Proceed'
+        doPackage == 'Master'
       }
 
     }

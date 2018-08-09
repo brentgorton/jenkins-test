@@ -24,21 +24,22 @@ exit 0'''
     stage('Should you') {
       steps {
         script {
-          env.doPackage = input(message: 'Should you package', id: 'doPackage')
+          doPackage = input(message: 'Should you package', id: 'doPackage')
+          echo "${doPackage}"
         }
 
       }
     }
     stage('Speak') {
-      steps {
-        script {
-          echo "${env.doPackage}"
-          if("${doPackage}" == "Ok") {
-            echo 'Hello, bitwiseman!'
-            sh 'echo \'hit the speak message\''
-          }
+      when {
+        expression {
+          doPackage == 'Proceed'
         }
 
+      }
+      steps {
+        echo 'Hello, bitwiseman!'
+        sh 'echo \'hit the speak message\''
       }
     }
   }

@@ -1,17 +1,18 @@
 pipeline {
   agent any
-  environment {
-    PATH = "/usr/local/bin:$PATH"
-  }
   stages {
-    stage('error') {
+    stage('Environment Setup') {
       steps {
-        withNPM(npmrcConfig: '6b413fd8-8261-4b35-b97c-51e071c3afbc') {
-          sh '''npm install grunt grunt-cli
-grunt echo'''
-        }
-
+        sh 'npm install grunt grunt-cli'
       }
     }
+    stage('Execute') {
+      steps {
+        sh 'grunt echo'
+      }
+    }
+  }
+  environment {
+    PATH = "/usr/local/bin:$PATH"
   }
 }

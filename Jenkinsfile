@@ -24,7 +24,7 @@ exit 0'''
     stage('Should you') {
       steps {
         script {
-          somevalue = input(message: 'Should you package', id: 'somevalue', ok: 'true')
+          def somevalue = input(message: 'Should you package', id: 'somevalue', ok: 'true')
         }
 
       }

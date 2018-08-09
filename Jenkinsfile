@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Environment Setup') {
       steps {
-        sh 'npm install grunt grunt-cli'
+        sh '''npm install grunt grunt-cli
+exit 0'''
       }
     }
     stage('Execute') {

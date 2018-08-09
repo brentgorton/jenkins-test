@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    node {
-      label 'jenkins-test'
-    }
-
-  }
+  agent any
   stages {
     stage('Environment Setup') {
       steps {
@@ -17,11 +12,13 @@ exit 0'''
         stage('Execute') {
           steps {
             sh 'grunt echo'
+            sleep 60
           }
         }
         stage('Test') {
           steps {
             sh 'echo \'Test\''
+            sleep 60
           }
         }
       }

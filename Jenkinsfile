@@ -29,7 +29,7 @@ exit 0'''
     stage('Speak') {
       when {
         expression {
-          params.somevalue == 'true'
+          '${somevalue}' == 'true'
         }
 
       }
